@@ -4,17 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssemblyBrowser"
-
+        xmlns:vm="clr-namespace:AssemblyBrowser.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Expander Header="Namespace">
+    
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
+    
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" 
+                Command="{Binding LoadAssembly}" 
+                x:Name="loadAssemblyButton"
+                Content="Load Assembly"></Button>
+        <DockPanel Grid.Row="1"  LastChildFill="True">
+            <Label>
+                <StackPanel>
+                    <Expander Header="Namespace">
+                        <TextBlock Text="{Binding }"/>
+                    </Expander>
+                </StackPanel>
+            </Label>
+        </DockPanel>
+        <!--<Expander Header="Namespace">
+            
             <StackPanel Margin="15 0 0 0">
                 <TextBlock>Выберите технологию</TextBlock>
                 <CheckBox>WinForms</CheckBox>
                 <CheckBox>WPF</CheckBox>
                 <CheckBox>ASP.NET</CheckBox>
+           
+                <TextBlock>Выберите технологию</TextBlock>
+                <CheckBox>WinForms</CheckBox>
+                <CheckBox>WPF</CheckBox>
+                <CheckBox>ASP.NET</CheckBox>
             </StackPanel>
-        </Expander>
+        </Expander>-->
     </Grid>
 </Window>
