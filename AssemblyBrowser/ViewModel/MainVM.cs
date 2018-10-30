@@ -1,12 +1,7 @@
-﻿using AssemblyBrowser.Interfaces;
-using AssemblyBrowser.Model;
+﻿using AssemblyBrowser.Model;
 using AssemblyBrowserLib;
 using AssemblyBrowserLib.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssemblyBrowser.ViewModel
 {
