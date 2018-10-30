@@ -11,30 +11,41 @@ namespace AssemblyBrowserLib
     public class AssemblyReader
     {
         private readonly List<Namespace> namespaces;
-        Assembly assembly;
-
+     
         public AssemblyReader()
         {
             namespaces = new List<Namespace>();
         }
 
-        public List<Namespace> GetAssembly()
+        public List<Namespace> GetAssembly(string path)
         {
+            Assembly assembly;
+            assembly = Assembly.LoadFrom(path);
 
-
+            GetAssemblyContent(assembly);
 
             return namespaces;
         }
 
-
-        private void GetClasses()
+        private void GetAssemblyContent(Assembly assembly)
         {
-
-        }
-
-        private void GetNamespaces()
-        {
-
+            foreach(Type type in assembly.DefinedTypes)
+            {
+                if (type.Namespace != null)
+                {
+                    Namespace ns = namespaces.Find(x => x.Name == type.Namespace);
+                    if (ns == null)
+                    {
+                        ns = new Namespace(type.Namespace);
+                        ns.DataTypes.Add(new ClassType(type));
+                        namespaces.Add(ns);
+                    }
+                    else
+                    {
+                        ns.DataTypes.Add(new ClassType(type));
+                    }
+                }
+            }
         }
 
     }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowser", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserLib", "AssemblyBrowserLib\AssemblyBrowserLib.csproj", "{AEB8BA1D-26FE-4050-85C0-82B68A7D6D5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserTest", "AssemblyBrowserTest\AssemblyBrowserTest.csproj", "{35471808-B040-4442-9480-F3EBDF5607C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AEB8BA1D-26FE-4050-85C0-82B68A7D6D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEB8BA1D-26FE-4050-85C0-82B68A7D6D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEB8BA1D-26FE-4050-85C0-82B68A7D6D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35471808-B040-4442-9480-F3EBDF5607C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35471808-B040-4442-9480-F3EBDF5607C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35471808-B040-4442-9480-F3EBDF5607C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35471808-B040-4442-9480-F3EBDF5607C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
