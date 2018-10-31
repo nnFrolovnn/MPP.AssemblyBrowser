@@ -10,7 +10,32 @@ namespace AssemblyBrowser.ViewModel
         {
             get
             {
-                return property.FullProperty;
+                string FullProperty = "public ";
+
+                FullProperty += property.PropertyType + " " + property.Name;
+
+                if (property.CanRead)
+                {
+                    FullProperty += "{ get; ";
+                    if (property.CanWrite)
+                    {
+                        FullProperty += " set; }";
+                    }
+                    else
+                    {
+                        FullProperty += "}";
+                    }
+                }
+                else
+                {
+                    if (property.CanWrite)
+                    {
+                        FullProperty += "{ set; }";
+                    }
+                }
+
+                return FullProperty;
+
             }
         }
 

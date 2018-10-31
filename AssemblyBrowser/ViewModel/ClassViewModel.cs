@@ -7,7 +7,35 @@ namespace AssemblyBrowser.ViewModel
     {
         private readonly ClassType classType;
 
-        public string ClassString => classType.FullName;
+        public string ClassString
+        {
+            get
+            {
+                string fullName = "";
+                if (classType.IsPublic)
+                {
+                    fullName += "public ";
+                }
+                if (classType.IsSealed)
+                {
+                    fullName += "sealed ";
+                }
+                if (classType.IsInterface)
+                {
+                    fullName += "interface ";
+                }
+                if (classType.IsAbstract && !classType.IsInterface)
+                {
+                    fullName += "abstract ";
+                }
+                if (classType.IsClass)
+                {
+                    fullName += "class ";
+                }
+                fullName += classType.Name;
+                return fullName;
+            }
+        }
 
         public IEnumerable<object> Members
         {

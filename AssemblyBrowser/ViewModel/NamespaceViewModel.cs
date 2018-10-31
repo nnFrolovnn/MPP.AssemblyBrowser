@@ -8,6 +8,7 @@ namespace AssemblyBrowser.ViewModel
         private readonly Namespace ns;
 
         public string Name => ns.Name;
+
         public List<ClassViewModel> ClassTypes
         {
             get

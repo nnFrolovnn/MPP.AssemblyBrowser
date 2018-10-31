@@ -32,7 +32,7 @@ namespace AssemblyBrowser.ViewModel
 
                     if (fileWorker.OpenFileD())
                     {
-                        assemblyContent = assemblyReader.GetAssembly(fileWorker.FilePath);                
+                        assemblyContent = assemblyReader.LoadAssemblyTypes(fileWorker.FilePath);                
                         OnPropertyChanged(nameof(Namespaces));
                     }
 

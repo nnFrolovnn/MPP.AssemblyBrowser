@@ -6,7 +6,11 @@ namespace AssemblyBrowserLib.Models
     public class ClassType
     {
         public string Name { get; set; }
-        public string FullName { get; private set; }
+        public bool IsPublic { get; set; }
+        public bool IsSealed { get; set; }
+        public bool IsInterface { get; set; }
+        public bool IsAbstract { get; set; }
+        public bool IsClass { get; set; }
 
         public List<Field> Fields { get; set; }
         public List<Property> Properties { get; set; }
@@ -19,40 +23,24 @@ namespace AssemblyBrowserLib.Models
             Methods = new List<Method>();
 
             Name = type.Name;
-            GetFields(ref type);
-            GetProperties(ref type);
-            GetMethods(ref type);
+            GetFields(type);
+            GetProperties(type);
+            GetMethods(type);
 
-            SetFullName(type);
+            SetProperties(type);
         }
 
-        private void SetFullName(Type type)
+        private void SetProperties(Type type)
         {
-            FullName = "";
-            if(type.IsPublic)
-            {
-                FullName += "public ";
-            }
-            if(type.IsSealed)
-            {
-                FullName += "sealed ";
-            }
-            if(type.IsInterface)
-            {
-                FullName += "interface ";
-            }
-            if(type.IsAbstract && !type.IsInterface)
-            {
-                FullName += "abstract ";
-            }
-            if(type.IsClass)
-            {
-                FullName += "class ";
-            }
-            FullName += Name;
+            IsAbstract = type.IsAbstract;
+            IsClass = type.IsClass;
+            IsInterface = type.IsInterface;
+            IsPublic = type.IsPublic;
+            IsSealed = type.IsSealed;
+            
         }
 
-        private void GetFields(ref Type type)
+        private void GetFields(Type type)
         {           
             var fields = type.GetFields();
 
@@ -62,7 +50,7 @@ namespace AssemblyBrowserLib.Models
             }
         }
 
-        private void GetProperties(ref Type type)
+        private void GetProperties(Type type)
         {            
             var properties = type.GetProperties();
 
@@ -72,7 +60,7 @@ namespace AssemblyBrowserLib.Models
             }
         }
 
-        private void GetMethods(ref Type type)
+        private void GetMethods(Type type)
         {
             
             var methods = type.GetMethods();

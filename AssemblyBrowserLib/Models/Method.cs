@@ -5,26 +5,23 @@ namespace AssemblyBrowserLib.Models
     public class Method
     {
         public string Name { get; set; }
-
         public string Signature { get; set; }
+
+        public bool IsPublic { get; set; }
+        public bool IsStatic { get; set; }
+        public bool IsVirtual { get; set; }
+        public bool IsFinal { get; set; }
 
         public Method(MethodInfo method)
         {
             Name = method.Name;
-            if(method.IsPublic)
-            {
-                Signature = "public ";
-            }
-            if (method.IsStatic)
-            {
-                Signature += "static ";
-            }
-            else if (method.IsVirtual && !method.IsFinal)
-            {
-                Signature += "virtual ";
-            }
 
-            Signature += method + ";";
+            IsStatic = method.IsStatic;
+            IsVirtual = method.IsVirtual;
+            IsFinal = method.IsFinal;
+            IsPublic = method.IsPublic;
+
+            Signature = method.ToString();
         }
     }
 }

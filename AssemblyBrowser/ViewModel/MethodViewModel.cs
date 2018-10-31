@@ -10,7 +10,20 @@ namespace AssemblyBrowser.ViewModel
         {
             get
             {
-                return method.Signature;
+                string fullMethod = "public ";
+
+                if (method.IsStatic)
+                {
+                    fullMethod += "static ";
+                }
+                else if (method.IsVirtual && !method.IsFinal)
+                {
+                    fullMethod += "virtual ";
+                }
+
+                fullMethod += method.Signature + ";";
+
+                return fullMethod;
             }
         }
 

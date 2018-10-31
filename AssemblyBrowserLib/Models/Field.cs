@@ -5,30 +5,23 @@ namespace AssemblyBrowserLib.Models
     public class Field
     {
         public string Name { get; set; }
-
         public string FieldType { get; set; }
 
-        public string FullField { get; private set; }
+        public bool IsPublic { get; set; }
+        public bool IsStatic { get; set; }
 
         public Field(FieldInfo field)
         {
             Name = field.Name;
             FieldType = field.FieldType.Name;
 
-            SetFullField(field);
+            SetProperties(field);
         }
 
-        private void SetFullField(FieldInfo field)
+        private void SetProperties(FieldInfo field)
         {
-            FullField += "public ";
-
-            if (field.IsStatic)
-            {
-                FullField += "static ";
-            }
-
-            FullField += FieldType + " " + Name;
-
+            IsPublic = field.IsPublic;
+            IsStatic = field.IsStatic;
         }
     }
 }

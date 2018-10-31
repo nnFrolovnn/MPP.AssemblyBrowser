@@ -6,44 +6,20 @@ namespace AssemblyBrowserLib.Models
     {
         public string Name { get; set; }
         public string PropertyType { get; set; }
-        public string FullProperty { get; private set; }
 
+        public bool IsPublic { get; set; }
+        public bool CanWrite { get; set; }
+        public bool CanRead { get; set; }
 
         public Property(PropertyInfo property)
         {
             Name = property.Name;
             PropertyType = property.PropertyType.Name;
 
-            SetFullProperty(property);
+            IsPublic = true;
+            CanRead = property.CanRead;
+            CanWrite = property.CanWrite;
         }
 
-        private void SetFullProperty(PropertyInfo property)
-        {
-            FullProperty = "public ";            
-
-            FullProperty += PropertyType + " " + Name;
-
-            if(property.CanRead)
-            {
-                FullProperty += "{ get; ";
-                if (property.CanWrite)
-                {
-                    FullProperty += " set; }";
-                }
-                else
-                {
-                    FullProperty += "}";
-                }
-            }
-            else
-            {
-                if(property.CanWrite)
-                {
-                    FullProperty += "{ set; }";
-                }
-            }
-
-
-        }
     }
 }

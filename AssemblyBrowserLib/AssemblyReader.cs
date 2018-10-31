@@ -7,25 +7,23 @@ namespace AssemblyBrowserLib
 {
     public class AssemblyReader
     {
-        private readonly List<Namespace> namespaces;
      
         public AssemblyReader()
         {
-            namespaces = new List<Namespace>();
         }
 
-        public List<Namespace> GetAssembly(string path)
+        public List<Namespace> LoadAssemblyTypes(string path)
         {
             Assembly assembly;
             assembly = Assembly.LoadFrom(path);
 
-            GetAssemblyContent(assembly);
-
-            return namespaces;
+            return LoadAssemblyContent(assembly);
         }
 
-        private void GetAssemblyContent(Assembly assembly)
+        private List<Namespace> LoadAssemblyContent(Assembly assembly)
         {
+            List<Namespace> namespaces = new List<Namespace>();
+
             foreach(Type type in assembly.DefinedTypes)
             {
                 if (type.Namespace != null)
@@ -42,7 +40,20 @@ namespace AssemblyBrowserLib
                         ns.DataTypes.Add(new ClassType(type));
                     }
                 }
+                else
+                {
+                    Namespace ns = namespaces.Find(x => x.Name == "Global");
+                    if (ns == null)
+                    {
+                        ns = new Namespace("Global");
+                        namespaces.Add(ns);
+                    }
+
+                    ns.DataTypes.Add(new ClassType(type));
+                }
             }
+
+            return namespaces;
         }
 
     }

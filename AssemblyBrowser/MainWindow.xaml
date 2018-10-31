@@ -14,7 +14,7 @@
     
     <Window.Resources>
         <vm:MainVM x:Key="MainVM"/>
-        
+
         <HierarchicalDataTemplate DataType="{x:Type vm:NamespaceViewModel}" ItemsSource="{Binding ClassTypes}">
             <TextBlock Text="{Binding Name}" Margin="10, 0, 0, 0"/>
         </HierarchicalDataTemplate>
